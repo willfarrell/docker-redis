@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  redis:
+    build: .
+    restart: always
+    mem_limit: 1024m
+    cpu_shares: 512
+    read_only: false
+    security_opt:
+     - "no-new-privileges"
+    env_file:
+     - redis.sample.env
+    ports:
+     - "6379:6379"
+    volumes:
+     - "./redis/data:/data:rw"
